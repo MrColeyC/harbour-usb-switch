@@ -30,12 +30,17 @@ IconButton {
     visible: usbControl.isModeAvailable(modeName)
     width:parent.width
     height: page.height / (usbControl.availableModes.length + 1)
+    onClicked: {
+        usbControl.setMode(modeName)
+        if (usbControl.currentMode == 'developer_mode') {
+           (mceControl.currentBlankingStatus == 'allowed'? mceControl.preventDisplayBlanking() : mceControl.allowDisplayBlanking());
+        }
+    }
     icon.source:'image://theme/' + iconName + '?' + ((parent.pressed || usbControl.currentMode === modeName) ? Theme.highlightColor : Theme.primaryColor)
-    onClicked: usbControl.setMode(modeName)
     Label {
         anchors.horizontalCenter: parent.horizontalCenter
         color: (parent.pressed || usbControl.currentMode === parent.modeName) ? Theme.highlightColor : Theme.primaryColor
-        text:parent.text
+        text:parent.text + ((mceControl.currentBlankingStatus == 'paused' && usbControl.currentMode == 'developer_mode' && iconName == 'icon-l-developer-mode')?" - Display On":"")
     }
     Rectangle {
         width:parent.width

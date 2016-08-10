@@ -31,7 +31,7 @@ ApplicationWindow
     property string current_mode: ''
     initialPage: Component { FirstPage { } }
     cover: Qt.resolvedUrl("cover/CoverPage.qml")
-
+    Component.onDestruction: mceControl.allowDisplayBlanking()
 
     DBusInterface {
 
@@ -84,11 +84,37 @@ ApplicationWindow
 
     }
 
+    DBusInterface {
+        id: mceControl
+        service: "com.nokia.mce"
+        path: "/com/nokia/mce/request"
+        iface: "com.nokia.mce.request"
+        bus: DBusInterface.SystemBus
+
+        signalsEnabled: true
+
+        property string currentBlankingStatus: ''
+
+        function preventDisplayBlanking() {
+                    console.log("prevent display blanking")
+                    call('req_display_blanking_pause', undefined)
+                    currentBlankingStatus = 'paused'
+        }
+
+        function allowDisplayBlanking() {
+                    console.log("allow display blanking")
+                    call('req_display_cancel_blanking_pause', undefined)
+                    currentBlankingStatus = 'allowed'
+        }
+
+
+    }
     Timer {
         running: true
         interval: 200
         onTriggered: {
             usbControl.init();
+            mceControl.allowDisplayBlanking();
         }
     }
 }
