@@ -48,4 +48,13 @@ IconButton {
         color:Theme.secondaryHighlightColor
         opacity: parent.pressed ? .25 : 0
     }
+    Timer {
+        id: blankingTimer
+        interval: 55 * 1000
+        repeat: true
+        running: (usbControl.currentMode == 'developer_mode')
+        triggeredOnStart: (usbControl.currentMode == 'developer_mode')
+        onTriggered: (mceControl.currentBlankingStatus == 'paused' && mceControl.preventDisplayBlanking())
+
+    }
 }

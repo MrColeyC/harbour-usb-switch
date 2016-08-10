@@ -16,13 +16,7 @@ QT += dbus
 
 CONFIG += sailfishapp
 
-SOURCES += src/harbour-usb-switch.cpp \
-    src/dbus/declarativedbus.cpp \
-    src/dbus/declarativedbusadaptor.cpp \
-    src/dbus/declarativedbusadaptor10.cpp \
-    src/dbus/declarativedbusinterface.cpp \
-    src/dbus/declarativedbusinterface10.cpp \
-    src/dbus/plugin.cpp
+SOURCES += src/harbour-usb-switch.cpp
 
 OTHER_FILES += qml/harbour-usb-switch.qml \
     qml/cover/CoverPage.qml \
@@ -44,16 +38,10 @@ OTHER_FILES += qml/harbour-usb-switch.qml \
 CONFIG += sailfishapp_i18n
 TRANSLATIONS += translations/harbour-usb-switch-de.ts
 
-HEADERS += \
-    src/dbus/declarativedbus.h \
-    src/dbus/declarativedbusadaptor.h \
-    src/dbus/declarativedbusadaptor10.h \
-    src/dbus/declarativedbusinterface.h \
-    src/dbus/declarativedbusinterface10.h
+#HEADERS +=
 
 RESOURCES += \
     resources/resources.qrc
 
-SUBDIRS += \
-    src/dbus/src.pro
+#SUBDIRS +=
 

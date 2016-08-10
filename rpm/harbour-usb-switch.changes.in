@@ -8,8 +8,11 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
+* Mon Aug 08 2016 Coley Curtin <jack.tar@example.com> 0.0.1-1
+- Added screen Blanking prevention
+- nemomobile.dbus allowed in harbour now.
+
 * Sun Apr 13 2014 Jack Tar <jack.tar@example.com> 0.0.1-1
 - Scrubbed the deck
 - Hoisted the sails
-
 
